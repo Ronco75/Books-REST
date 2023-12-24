@@ -20,7 +20,7 @@ public class BookService {
         return bookRepository.findById(id);
     }
 
-    public Object save(Book book) {
+    public Book save(Book book) {
         return bookRepository.save(book);
     }
 
