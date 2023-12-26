@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.handson.basic.util.Dates;
 import org.joda.time.LocalDateTime;
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -26,6 +25,12 @@ public class Book {
     @NotNull
     @Column(nullable = false, updatable = false)
     private Date createdAt = Dates.nowUTC();
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("createdAt")
+    public LocalDateTime calcCreatedAt() {
+        return Dates.atLocalTime(createdAt);
+    }
 
     @NotEmpty
     private String author;
@@ -84,9 +89,5 @@ public class Book {
         this.createdAt = createdAt;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonProperty("createdAt")
-    public LocalDateTime calcCreatedAt() {
-        return Dates.atLocalTime(createdAt);
-    }
+
 }

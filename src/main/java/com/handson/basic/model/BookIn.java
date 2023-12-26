@@ -1,11 +1,15 @@
 package com.handson.basic.model;
 
+import com.handson.basic.repo.BookRepository;
 import com.handson.basic.util.Dates;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import java.util.Optional;
 
 import static com.handson.basic.model.BookBuilder.aBook;
 
@@ -70,4 +74,5 @@ public class BookIn {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
 }
